@@ -1,3 +1,4 @@
+// filepath: c:\Users\ASUS\crud_mysql\_helpers\db.ts
 import { Sequelize } from "sequelize";
 import mysql from "mysql2/promise";
 import config from "../config.json";
@@ -19,7 +20,7 @@ export default db;
 
 export async function initialize(): Promise<void> {
     try {
-        console.log(" Initializing database...");
+        console.log("Initializing database...");
 
         // Load database config
         const { host, port, user, password, database }: DatabaseConfig = config.database;
@@ -34,7 +35,7 @@ export async function initialize(): Promise<void> {
         // Connect to the database using Sequelize
         const sequelize = new Sequelize(database, user, password, {
             dialect: "mysql",
-            logging: false, // Set to 'console.log' to enable logging
+            logging: console.log, // Enable logging
         });
 
         // Initialize the User model
@@ -53,7 +54,7 @@ export async function initialize(): Promise<void> {
 
 // Ensure database is initialized before export
 initialize().then(() => {
-    console.log(" Database is ready for use.");
+    console.log("Database is ready for use.");
 }).catch(err => {
-    console.error(" Failed to initialize database:", err);
+    console.error("Failed to initialize database:", err);
 });

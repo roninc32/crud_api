@@ -52,7 +52,6 @@ async function update(id: number, params: Partial<CreateUserParams>): Promise<vo
         }
     }
 
-    // Creiamo un nuovo oggetto aggiornato per evitare problemi di tipo
     const updatedParams: Partial<CreateUserParams & { passwordHash?: string }> = { ...params };
 
     if (params.password) {

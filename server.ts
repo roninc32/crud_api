@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import { errorHandler } from "./_middleware/error-handler";
 import userRoutes from "./users/user.controller";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -16,7 +18,6 @@ app.use("/users", userRoutes);
 
 // Global error handler
 app.use(errorHandler);
-
 // Set up server port
 const PORT = process.env.NODE_ENV === "production" ? Number(process.env.PORT) || 80 : 4000;
 
